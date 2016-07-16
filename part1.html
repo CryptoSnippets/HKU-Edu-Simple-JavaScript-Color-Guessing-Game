@@ -6,8 +6,27 @@
 </head>
 <body onload="do_game()">
 
-<script>
-	
+<script>    
+	var finished = false;   
+	var guesses = 0;
+	var color = ['aqua', 'beige', 'cyan', 'darkorange', 'greenyellow', 'hotpink', 'indigo', 'navy', 'orchid', 'peru', 'tan', 'tomato'];
+
+	    function do_game() {
+	    	var random_color = color[Math.floor(Math.random() * color.length)];
+	    	target = random_color;
+
+	    	while (!finished) {
+	    		guess_input = prompt("For testing - Target is: " + "*" +
+	    		 target + "*\n\n" + 
+	    		 "Guess which color I am thinking of from the following list:\n\n" +
+	    		  color.join(', ') + ".")
+	    		guesses += 1;
+	    		finished = (guess_input === target);
+	    	}
+	    	
+	    	myBody = document.getElementsByTagName("body")[0];
+			myBody.style.background = target;
+	    }
 </script>
 	
 </body>
