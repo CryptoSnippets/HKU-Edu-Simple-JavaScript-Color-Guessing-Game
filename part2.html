@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>JavaScript Color Guessing Game Assessment Part 2</title>
+</head>
+<body onload="do_game()">
+
+<script>
+
+	var finished = false;   
+	var guesses = 0;
+	var color = ['aqua', 'beige', 'cyan', 'darkorange', 'greenyellow', 'hotpink', 'indigo', 'navy', 'orchid', 'peru', 'tan', 'tomato'];
+
+	    function do_game() {
+	    	var random_color = color[Math.floor(Math.random() * color.length)];
+	    	target = random_color;
+
+	    	while (!finished) {
+	    		guess_input = prompt("For testing - Target is: " + "*" +
+	    		 target + "*\n\n" + 
+	    		 "Guess which color I am thinking of from the following list:\n\n" +
+	    		  color.join(', ') + ".");
+	    		guesses += 1;
+	    		finished = check_guess();
+	    	}
+	    }
+
+	    function check_guess() {
+
+	    	// if (color.includes(guess_input) == false) {
+	    	if (color.indexOf(guess_input) == -1) {
+	    		alert("There is no such color in the list.");
+	    		return false;
+	    	}
+	    	if (guess_input > target) {
+	    		alert("Your guess is alphabetically higher than the target.");
+	    		return false;
+	    	}
+	    	if (guess_input < target) {
+	    		alert("Your guess is alphabetically lower than the target.");
+	    		return false;
+	    	}
+	    	myBody = document.getElementsByTagName("body")[0];
+			myBody.style.background = target;
+	    	alert("You got it! The color was " + target + ".\n\nIt took you " + 
+	    		guesses + " guesses to get the correct color.");
+	    	return true;
+	    }
+
+</script>
+	
+</body>
+</html>
